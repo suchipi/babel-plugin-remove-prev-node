@@ -3,7 +3,10 @@ const { types: t } = require("@babel/core");
 
 const allNodeTypes = Object.keys(t).filter(
   (key) =>
-    key[0].match(/[A-Z]/) && !key.match(/_/) && !(key.toUpperCase() === key)
+    key[0].match(/[A-Z]/) &&
+    !key.match(/_/) &&
+    !(key.toUpperCase() === key) &&
+    key !== "NumberLiteral" // babel prints a noisy warning if we add a visitor for this, which has been renamed to NumericLiteral
 );
 
 module.exports = declare((api) => {
