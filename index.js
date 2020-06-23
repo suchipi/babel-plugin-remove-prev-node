@@ -6,7 +6,8 @@ const allNodeTypes = Object.keys(t).filter(
     key[0].match(/[A-Z]/) &&
     !key.match(/_/) &&
     !(key.toUpperCase() === key) &&
-    key !== "NumberLiteral" // babel prints a noisy warning if we add a visitor for this, which has been renamed to NumericLiteral
+    key !== "NumberLiteral" && // babel prints a noisy warning if we add a visitor for this, which has been renamed to NumericLiteral
+    key !== "RegexLiteral" // babel prints a noisy warning if we add a visitor for this, which has been renamed to RegExpLiteral
 );
 
 module.exports = declare((api) => {
